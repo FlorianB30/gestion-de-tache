@@ -1,1 +1,13 @@
-<p>home-page works!</p>
+<div class="head-taks">
+    <p>Titre</p>
+    <p>Créée le</p>
+    <p>Deadline</p>
+    <p>Temps réalisé</p>
+    <p>Statut</p>
+</div>
+@for(project of projects; track project.project_id) {
+<h2>{{project.name}}</h2>
+@for(task of project.tasks; track task.task_id) {
+<app-task-line [task]="task"></app-task-line>
+}
+}

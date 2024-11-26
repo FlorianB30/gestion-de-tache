@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+
+    .head-taks {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
+
+        >* {
+            flex: 1;
+        }
+    }
+
+}
