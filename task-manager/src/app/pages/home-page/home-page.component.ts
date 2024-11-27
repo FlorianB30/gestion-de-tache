@@ -4,6 +4,7 @@ import { TaskBoxComponent } from '../../components/task-box/task-box.component';
 import { TaskLineComponent } from '../../components/task-line/task-line.component';
 import Cookie from 'cookiejs';
 import { Router } from '@angular/router';
+import { NewTaskBoxComponent } from '../../components/new-task-box/new-task-box.component';
 
 @Component({
   selector: 'app-home-page',
@@ -11,14 +12,14 @@ import { Router } from '@angular/router';
   imports: [
     CommonModule,
     TaskLineComponent,
-    TaskBoxComponent
+    TaskBoxComponent,
+    NewTaskBoxComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
-  constructor(private router: Router) { }
-
+  styleNewTaskForm: string = 'displayNone'
   projects = [
     {
       project_id: 1,
@@ -36,6 +37,16 @@ export class HomePageComponent {
       ]
     }
   ]
+
+  constructor(private router: Router) { }
+
+  changeStyle(event: any): void {
+    this.styleNewTaskForm = event
+  }
+
+  openNewTaskForm() {
+    this.styleNewTaskForm = ''
+  }
 
   deleteCookie() {
     Cookie.remove('taskmanager')

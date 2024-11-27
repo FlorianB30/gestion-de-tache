@@ -1,3 +1,8 @@
+<div>
+    <p>Nouveau projet</p>
+    <p (click)="openNewTaskForm()">Nouvelle tâche</p>
+</div>
+
 <div class="head-taks">
     <p>Titre</p>
     <p>Créée le</p>
@@ -13,3 +18,4 @@
 }
 }
 <p (click)="deleteCookie()">Déconnexion</p>
+<app-new-task-box (style)="changeStyle($event)" [class]="styleNewTaskForm"></app-new-task-box>

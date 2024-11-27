@@ -1,1 +1,51 @@
-<p>new-task-box works!</p>
+<form [formGroup]="taskForm" (ngSubmit)="createTask()">
+    <h3>Nouvelle tâche</h3>
+
+    <div class="row">
+        <div>
+            <label for="project">Projet</label>
+            <select id="project" formControlName="project">
+                <option>Projet 1</option>
+                <option>Projet 2</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="user">Collaborateur</label>
+            <select id="user" formControlName="user">
+                <option>Collaborateur 1</option>
+                <option>Collaborateur 2</option>
+            </select>
+        </div>
+    </div>
+
+    <div>
+        <label for="title">Titre de la tâche</label>
+        <input id="title" formControlName="title" />
+    </div>
+
+    <div>
+        <label for="time">Temps prévu (en heure)</label>
+        <input id="time" formControlName="time" type="number" />
+    </div>
+
+    <div>
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <div>
+        <label for="tags">Tags</label>
+        <textarea id="tags" formControlName="tags"></textarea>
+    </div>
+
+    <div>
+        <label for="deadline">Deadline</label>
+        <input id="deadline" formControlName="deadline" type="date" />
+    </div>
+
+    <div class="flex-row">
+        <button type="submit" [disabled]="taskForm.invalid">Ajouter</button>
+        <p (click)="closeTaskForm()">Annuler</p>
+    </div>
+</form>
