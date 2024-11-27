@@ -1,47 +1,20 @@
-const db = require('../config/db');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db');
+const TaskState = require('./taskState');
+const User = require('./user');
 
-const Task = {
-  create: async (title, description, priority, deadline, task_states_id, user_id) => {
-    const sql = `
-      INSERT INTO Tasks (title, description, priority, deadline, task_states_id, user_id, created_date) 
-      VALUES (?, ?, ?, ?, ?, ?, NOW())
-    `;
-    return db.promise().query(sql, [title, description, priority, deadline, task_states_id, user_id]);
-  },
-
-  findAll: async () => {
-    const sql = `
-      SELECT t.*, ts.name AS state_name 
-      FROM Tasks t
-      JOIN TaskStates ts ON t.task_states_id = ts.task_states_id
-    `;
-    return db.promise().query(sql);
-  },
-
-  findById: async (id) => {
-    const sql = `
-      SELECT t.*, ts.name AS state_name 
-      FROM Tasks t
-      JOIN TaskStates ts ON t.task_states_id = ts.task_states_id
-      WHERE t.task_id = ?
-    `;
-    return db.promise().query(sql, [id]);
-  },
-
-  update: async (id, updates) => {
-    const { title, description, priority, deadline, task_states_id } = updates;
-    const sql = `
-      UPDATE Tasks 
-      SET title = ?, description = ?, priority = ?, deadline = ?, task_states_id = ? 
-      WHERE task_id = ?
-    `;
-    return db.promise().query(sql, [title, description, priority, deadline, task_states_id, id]);
-  },
-
-  delete: async (id) => {
-    const sql = 'DELETE FROM Tasks WHERE task_id = ?';
-    return db.promise().query(sql, [id]);
-  },
-};
+const Task = sequelize.define('Task', {
+    task_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    title: { type: DataTypes.STRING(50), allowNull: false },
+    description: { type: DataTypes.STRING(100) },
+    priority: { type: DataTypes.INTEGER },
+    deadline: { type: DataTypes.DATE },
+    created_date: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
+    task_states_id: {
+        type: DataTypes.INTEGER,
+        references: { model: TaskState, key: 'task_states_id' },
+    },
+    user_id: { type: DataTypes.INTEGER, references: { model: User, key: 'user_id' } },
+});
 
 module.exports = Task;

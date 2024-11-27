@@ -1,29 +1,23 @@
-const Task = require('../models/task');
+const { Task, User, TaskState } = require('../models');
 
-const TaskService = {
-  createTask: async (taskData) => {
-    const { title, description, priority, deadline, task_states_id, user_id } = taskData;
-    const [result] = await Task.create(title, description, priority, deadline, task_states_id, user_id);
-    return result.insertId;
-  },
-
-  getAllTasks: async () => {
-    const [tasks] = await Task.findAll();
-    return tasks;
-  },
-
-  getTaskById: async (id) => {
-    const [task] = await Task.findById(id);
-    return task[0]; // Retourne la tâche trouvée
-  },
-
-  updateTask: async (id, updates) => {
-    await Task.update(id, updates);
-  },
-
-  deleteTask: async (id) => {
-    await Task.delete(id);
-  },
+const createTask = async (taskData) => {
+    return await Task.create(taskData);
 };
 
-module.exports = TaskService;
+const getTasks = async () => {
+    return await Task.findAll({ include: [User, TaskState] });
+};
+
+const updateTask = async (taskId, updates) => {
+    const task = await Task.findByPk(taskId);
+    if (!task) throw { status: 404, message: 'Task not found' };
+    return await task.update(updates);
+};
+
+const deleteTask = async (taskId) => {
+    const task = await Task.findByPk(taskId);
+    if (!task) throw { status: 404, message: 'Task not found' };
+    await task.destroy();
+};
+
+module.exports = { createTask, getTasks, updateTask, deleteTask };

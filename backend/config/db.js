@@ -1,18 +1,16 @@
-const mysql = require('mysql2');
+require('dotenv').config();
+console.log(process.env.DB_USER);
+const { Sequelize } = require('sequelize');
 
-const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root', 
-  password: 'yourpassword', 
-  database: 'task_manager', 
-});
+const sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: 'mysql',
+    }
+);
 
-db.getConnection((err) => {
-  if (err) {
-    console.error('Erreur de connexion à la base de données :', err.message);
-  } else {
-    console.log('Connecté à la base de données.');
-  }
-});
-
-module.exports = db;
+module.exports = sequelize;
