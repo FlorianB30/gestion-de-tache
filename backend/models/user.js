@@ -1,20 +1,11 @@
-const db = require('../config/db');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db');
 
-const User = {
-  create: async (mail, password) => {
-    const sql = 'INSERT INTO Users (mail, password, created_date) VALUES (?, ?, NOW())';
-    return db.promise().query(sql, [mail, password]);
-  },
-
-  findByEmail: async (mail) => {
-    const sql = 'SELECT * FROM Users WHERE mail = ?';
-    return db.promise().query(sql, [mail]);
-  },
-
-  findAll: async () => {
-    const sql = 'SELECT * FROM Users';
-    return db.promise().query(sql);
-  },
-};
+const User = sequelize.define('User', {
+    user_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    mail: { type: DataTypes.STRING(50), allowNull: false, unique: true },
+    password: { type: DataTypes.CHAR(60), allowNull: false },
+    created_date: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
+});
 
 module.exports = User;
