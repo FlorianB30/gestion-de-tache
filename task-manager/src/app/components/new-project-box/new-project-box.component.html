@@ -1,1 +1,13 @@
-<p>new-project-box works!</p>
+<form [formGroup]="projectForm" (ngSubmit)="createProject()">
+    <h3>Nouveau projet</h3>
+
+    <div>
+        <label for="name">Nom du projet</label>
+        <input id="name" formControlName="name" />
+    </div>
+
+    <div class="flex-row">
+        <button type="submit" [disabled]="projectForm.invalid">Créer</button>
+        <p (click)="closeProjectForm()">Annuler</p>
+    </div>
+</form>

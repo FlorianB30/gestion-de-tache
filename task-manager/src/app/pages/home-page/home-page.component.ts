@@ -5,6 +5,7 @@ import { TaskLineComponent } from '../../components/task-line/task-line.componen
 import Cookie from 'cookiejs';
 import { Router } from '@angular/router';
 import { NewTaskBoxComponent } from '../../components/new-task-box/new-task-box.component';
+import { NewProjectBoxComponent } from '../../components/new-project-box/new-project-box.component';
 
 @Component({
   selector: 'app-home-page',
@@ -13,13 +14,15 @@ import { NewTaskBoxComponent } from '../../components/new-task-box/new-task-box.
     CommonModule,
     TaskLineComponent,
     TaskBoxComponent,
-    NewTaskBoxComponent
+    NewTaskBoxComponent,
+    NewProjectBoxComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
   styleNewTaskForm: string = 'displayNone'
+  styleNewProjectForm: string = 'displayNone'
   projects = [
     {
       project_id: 1,
@@ -40,15 +43,19 @@ export class HomePageComponent {
 
   constructor(private router: Router) { }
 
-  changeStyle(event: any): void {
+  changeStyleTaskForm(event: any): void {
     this.styleNewTaskForm = event
+  }
+
+  changeStyleProjectForm(event: any): void {
+    this.styleNewProjectForm = event
   }
 
   openNewTaskForm() {
     this.styleNewTaskForm = ''
   }
 
-  deleteCookie() {
-    Cookie.remove('taskmanager')
+  openNewProjectForm() {
+    this.styleNewProjectForm = ''
   }
 }

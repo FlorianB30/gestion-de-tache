@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class ApiProjectService {
 
   constructor() { }
+
+  createProject(name: string): boolean {
+    return true
+  }
 }
