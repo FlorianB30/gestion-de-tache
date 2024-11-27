@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import Cookie from 'cookiejs';
 
 @Component({
   selector: 'app-home-page',
@@ -8,5 +10,10 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
+  constructor(private router: Router) { }
 
+  deleteCookie() {
+    Cookie.remove('taskmanager')
+    this.router.navigate(['/login'])
+  }
 }

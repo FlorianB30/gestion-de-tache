@@ -26,7 +26,9 @@ export class LoginPageComponent {
 
   logUser() {
     if (this.loginForm.valid) {
-      this.api.logUser(this.loginForm.value.email, this.loginForm.value.password);
+      if (this.api.logUser(this.loginForm.value.email, this.loginForm.value.password)) {
+        this.router.navigate(['/'])
+      }
     }
   }
 
