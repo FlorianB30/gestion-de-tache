@@ -18,6 +18,25 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent {
   constructor(private router: Router) { }
+
+  projects = [
+    {
+      project_id: 1,
+      name: 'Projet 1',
+      tasks: [
+        {
+          task_id: 1,
+          title: 'Tache 1',
+          createdate: '12/12/2024',
+          deadline: '02/02/2024',
+          timeDone: 0.5,
+          timeExpected: 10,
+          state: 'Commencée'
+        }
+      ]
+    }
+  ]
+
   deleteCookie() {
     Cookie.remove('taskmanager')
   }
