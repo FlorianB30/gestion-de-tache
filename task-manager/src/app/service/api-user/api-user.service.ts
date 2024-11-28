@@ -11,7 +11,7 @@ export class ApiUserService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
-  async registerUser(mail: string, password: string): Promise<boolean> {
+  async registerUser(mail: string, password: string) {
     await fetch(this.apiUrl + '/register', {
       method: 'POST',
       headers: {
@@ -19,12 +19,23 @@ export class ApiUserService {
       },
       body: JSON.stringify({ mail, password }),
     });
-    return true
   }
 
-  logUser(email: string, password: string): boolean {
-    Cookie.set('taskmanager', JSON.stringify({ email: email, isConnected: true }), { expires: 1 });
-    return true
+  async logUser(mail: string, password: string): Promise<boolean> {
+    const response = await fetch(this.apiUrl + '/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ mail, password }),
+    });
+    const responseJson = await response.json()
+    const user = responseJson.user
+    if (user !== undefined && user !== null) {
+      Cookie.set('taskmanager', JSON.stringify({ email: user.mail, user_id: user.user_id, token: user.token, isConnected: true }), { expires: 1 });
+      return true
+    }
+    return false
   }
 
   userIsConnected(): boolean {
