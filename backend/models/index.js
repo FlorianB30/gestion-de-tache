@@ -27,6 +27,9 @@ const Task = sequelize.define('Task', {
     created_date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     task_states_id: { type: DataTypes.INTEGER, allowNull: false },
     user_id: { type: DataTypes.INTEGER },
+    project_id: { type: DataTypes.INTEGER },
+    time_expected: { type: DataTypes.FLOAT, allowNull: false },
+    time_done: { type: DataTypes.FLOAT, allowNull: false, defaultValue: 0 },
 });
 
 const Project = sequelize.define('Project', {
@@ -39,6 +42,8 @@ const Project = sequelize.define('Project', {
 
 Task.belongsTo(User, { foreignKey: 'user_id' });
 Task.belongsTo(TaskState, { foreignKey: 'task_states_id' });
+Task.belongsTo(Project, { foreignKey: 'project_id' });
+Project.hasMany(Task, { foreignKey: 'project_id', as: 'Tasks' });
 Project.belongsTo(User, { foreignKey: 'user_id' });
 Project.belongsTo(ProjectState, { foreignKey: 'project_states_id' });
 

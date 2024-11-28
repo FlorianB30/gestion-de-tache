@@ -6,6 +6,7 @@ import Cookie from 'cookiejs';
 import { Router } from '@angular/router';
 import { NewTaskBoxComponent } from '../../components/new-task-box/new-task-box.component';
 import { NewProjectBoxComponent } from '../../components/new-project-box/new-project-box.component';
+import { ApiProjectService } from '../../service/api-project/api-project.service';
 
 @Component({
   selector: 'app-home-page',
@@ -23,25 +24,16 @@ import { NewProjectBoxComponent } from '../../components/new-project-box/new-pro
 export class HomePageComponent {
   styleNewTaskForm: string = 'displayNone'
   styleNewProjectForm: string = 'displayNone'
-  projects = [
-    {
-      project_id: 1,
-      name: 'Projet 1',
-      tasks: [
-        {
-          task_id: 1,
-          title: 'Tache 1',
-          createdate: '12/12/2024',
-          deadline: '02/02/2024',
-          timeDone: 0.5,
-          timeExpected: 10,
-          state: 'Commencée'
-        }
-      ]
-    }
-  ]
+  projects!: any[]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiProject: ApiProjectService) {
+    this.setDatas()
+  }
+
+  async setDatas() {
+    this.projects = await this.apiProject.getAllProjects()
+    console.log(this.projects)
+  }
 
   changeStyleTaskForm(event: any): void {
     this.styleNewTaskForm = event

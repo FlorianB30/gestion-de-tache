@@ -7,6 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DecimalToHourPipe implements PipeTransform {
 
   transform(value: number, ...args: unknown[]): string {
+    if (value === undefined || value === null) return value
     let time = value.toString().split('.')
     let hour = time[0]
     let minute = isNaN(parseFloat(time[1])) ? '' : (parseFloat(time[1]) * 60 / 100).toString()

@@ -8,4 +8,8 @@ const User = sequelize.define('User', {
     created_date: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
 });
 
+User.associate = (models) => {
+    User.hasMany(models.Project, { foreignKey: 'user_id' });
+};
+
 module.exports = User;

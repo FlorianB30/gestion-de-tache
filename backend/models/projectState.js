@@ -6,4 +6,8 @@ const ProjectState = sequelize.define('ProjectState', {
     name: { type: DataTypes.STRING(50), allowNull: false, unique: true },
 });
 
+ProjectState.associate = (models) => {
+    ProjectState.hasMany(models.Project, { foreignKey: 'project_states_id' });
+};
+
 module.exports = ProjectState;

@@ -14,4 +14,10 @@ const Project = sequelize.define('Project', {
     user_id: { type: DataTypes.INTEGER, references: { model: User, key: 'user_id' } },
 });
 
+Project.associate = (models) => {
+    Project.belongsTo(models.User, { foreignKey: 'user_id' });
+    Project.belongsTo(models.ProjectState, { foreignKey: 'project_states_id' });
+    Project.hasMany(models.Task, { foreignKey: 'project_id', as: 'Tasks' });
+};
+
 module.exports = Project;

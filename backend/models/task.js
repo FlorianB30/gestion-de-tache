@@ -15,6 +15,16 @@ const Task = sequelize.define('Task', {
         references: { model: TaskState, key: 'task_states_id' },
     },
     user_id: { type: DataTypes.INTEGER, references: { model: User, key: 'user_id' } },
+    project_id: {
+        type: DataTypes.INTEGER,
+        references: { model: Project, key: 'project_id' },
+    },
+    time_expected: { type: DataTypes.FLOAT, allowNull: false },
+    time_done: { type: DataTypes.FLOAT, allowNull: false, defaultValue: 0 },
 });
+
+Task.associate = (models) => {
+    Task.belongsTo(models.Project, { foreignKey: 'project_id' });
+};
 
 module.exports = Task;
