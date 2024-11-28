@@ -19,13 +19,7 @@ export class NewProjectBoxComponent {
 
   constructor(private fb: FormBuilder, private api: ApiProjectService) {
     this.projectForm = this.fb.group({
-      project: ['', [Validators.required]],
-      title: ['', [Validators.required]],
-      time: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      tags: [''],
-      deadline: ['', [Validators.required]],
-      user: ['', [Validators.required]],
+      name: ['', [Validators.required]]
     });
   }
 

@@ -1,5 +1,6 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { ApiUserService } from '../api-user/api-user.service';
+import Cookie from 'cookiejs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,23 @@ export class ApiProjectService {
   constructor(private api: ApiUserService) { }
 
   async createProject(name: string): Promise<boolean> {
-    const response = await fetch(this.apiUrl, {
+    await fetch(this.apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, project_states_id: 1 }),
+      body: JSON.stringify({ name, project_states_id: 1, user_id: this.getUserId() }),
     });
     return true
+  }
+
+  getUserId(): number {
+    let user = Cookie.get('taskmanager')
+    if (user === '') return 0
+    const userObj = JSON.parse(user.toString())
+    if (userObj.isConnected) {
+      return userObj.user_id
+    }
+    return 0
   }
 }
