@@ -7,10 +7,13 @@ const taskRoutes = require('./routes/tasks');
 const projectRoutes = require('./routes/projects');
 const { sequelize, User, Task, TaskState, ProjectState, Project } = require('./models/index.js');
 
+const cors = require('cors');
+
 dotenv.config();
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 // Routes

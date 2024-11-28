@@ -4,6 +4,8 @@ CREATE TABLE Users (
    mail VARCHAR(50) NOT NULL,
    password CHAR(60) NOT NULL,
    created_date DATETIME NOT NULL,
+   createdAt TIMESTAMP NOT NULL,
+   updatedAt TIMESTAMP NOT NULL,
    PRIMARY KEY (user_id),
    UNIQUE (mail)
 );

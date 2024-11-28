@@ -17,6 +17,7 @@ export class NavBarComponent {
 
   deleteCookie() {
     Cookie.remove('taskmanager')
+    this.router.navigate(['/login'])
   }
 
   navigateToProjects() {
