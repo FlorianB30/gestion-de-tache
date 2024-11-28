@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TaskBoxComponent } from '../../components/task-box/task-box.component';
 import { TaskLineComponent } from '../../components/task-line/task-line.component';
 import Cookie from 'cookiejs';
@@ -26,13 +26,15 @@ export class HomePageComponent {
   styleNewProjectForm: string = 'displayNone'
   projects!: any[]
 
+  @ViewChild(NewTaskBoxComponent) newTaskFormBox!: NewTaskBoxComponent;
+
   constructor(private router: Router, private apiProject: ApiProjectService) {
     this.setDatas()
   }
 
   async setDatas() {
     this.projects = await this.apiProject.getAllProjects()
-    console.log(this.projects)
+    this.newTaskFormBox.projects = this.projects
   }
 
   changeStyleTaskForm(event: any): void {

@@ -5,8 +5,9 @@
         <div>
             <label for="project">Projet</label>
             <select id="project" formControlName="project">
-                <option>Projet 1</option>
-                <option>Projet 2</option>
+                @for(project of projects; track project.project_id) {
+                <option value="project.project_id">{{project.name}}</option>
+                }
             </select>
         </div>
 

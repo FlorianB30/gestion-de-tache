@@ -29,5 +29,6 @@
 <app-task-line [task]="task"></app-task-line>
 }
 }
-<app-new-task-box (style)="changeStyleTaskForm($event)" [class]="styleNewTaskForm"></app-new-task-box>
+<app-new-task-box (style)="changeStyleTaskForm($event)" [class]="styleNewTaskForm"
+    [projects]="projects"></app-new-task-box>
 <app-new-project-box (style)="changeStyleProjectForm($event)" [class]="styleNewProjectForm"></app-new-project-box>

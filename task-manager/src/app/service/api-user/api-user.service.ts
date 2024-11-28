@@ -37,6 +37,10 @@ export class ApiUserService {
     return false
   }
 
+  getAllUsers(): any[] {
+    return []
+  }
+
   userIsConnected(): boolean {
     if (this.isBrowser) {
       let user = Cookie.get('taskmanager')

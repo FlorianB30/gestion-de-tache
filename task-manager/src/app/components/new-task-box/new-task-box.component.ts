@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiTaskService } from '../../service/api-task/api-task.service';
 
@@ -15,6 +15,7 @@ import { ApiTaskService } from '../../service/api-task/api-task.service';
 })
 export class NewTaskBoxComponent {
   taskForm: FormGroup
+  @Input() projects!: any[]
   @Output() style = new EventEmitter<string>()
 
   constructor(private fb: FormBuilder, private api: ApiTaskService) {
