@@ -24,16 +24,17 @@ export class NewTaskBoxComponent {
       project: ['', [Validators.required]],
       title: ['', [Validators.required]],
       time: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      description: [''],
       tags: [''],
       deadline: ['', [Validators.required]],
       user: ['', [Validators.required]],
     });
   }
 
-  createTask() {
+  async createTask() {
     if (this.taskForm.valid) {
-      if (this.api.createTask(this.taskForm.value.project, this.taskForm.value.title, this.taskForm.value.time, this.taskForm.value.description, this.taskForm.value.tags, this.taskForm.value.deadline, this.taskForm.value.user)) {
+      if (await this.api.createTask(this.taskForm.value)) {
+        console.log(this.taskForm.value)
         this.closeTaskForm()
       }
     }

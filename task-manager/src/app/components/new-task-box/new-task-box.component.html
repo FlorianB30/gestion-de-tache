@@ -6,7 +6,7 @@
             <label for="project">Projet</label>
             <select id="project" formControlName="project">
                 @for(project of projects; track project.project_id) {
-                <option value="project.project_id">{{project.name}}</option>
+                <option [value]="project.project_id">{{project.name}}</option>
                 }
             </select>
         </div>
@@ -15,7 +15,7 @@
             <label for="user">Collaborateur</label>
             <select id="user" formControlName="user">
                 @for(user of users; track user.user_id) {
-                <option value="user.user_id">{{user.mail}}</option>
+                <option [value]="user.user_id">{{user.mail}}</option>
                 }
             </select>
         </div>

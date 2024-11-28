@@ -38,6 +38,8 @@ CREATE TABLE Tasks (
    user_id INT,
    time_done FLOAT,
    time_expected FLOAT NOT NULL,
+   createdAt TIMESTAMP NOT NULL,
+   updatedAt TIMESTAMP NOT NULL,
    FOREIGN KEY (project_id) REFERENCES Projects (project_id)
    PRIMARY KEY (task_id),
    FOREIGN KEY (task_states_id) REFERENCES TaskStates (task_states_id),
