@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
 
   userIsConnected(): boolean {
     let user = Cookie.get('taskmanager')
-    console.log(user)
     if (user === '') return false
     const userObj = JSON.parse(user.toString())
     if (userObj.isConnected) {

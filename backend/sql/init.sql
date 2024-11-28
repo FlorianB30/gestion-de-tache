@@ -33,7 +33,7 @@ CREATE TABLE Tasks (
    description VARCHAR(100),
    priority INT,
    deadline DATE,
-   created_date DATETIME NOT NULL,
+   created_date DATE NOT NULL,
    task_states_id INT NOT NULL,
    user_id INT,
    PRIMARY KEY (task_id),
@@ -45,9 +45,11 @@ CREATE TABLE Tasks (
 CREATE TABLE Projects (
    project_id INT AUTO_INCREMENT,
    name VARCHAR(50) NOT NULL,
-   created_date DATETIME NOT NULL,
+   created_date DATE NOT NULL,
    project_states_id INT NOT NULL,
    user_id INT NOT NULL,
+   createdAt TIMESTAMP NOT NULL,
+   updatedAt TIMESTAMP NOT NULL,
    PRIMARY KEY (project_id),
    FOREIGN KEY (project_states_id) REFERENCES ProjectStates (project_states_id),
    FOREIGN KEY (user_id) REFERENCES Users (user_id)

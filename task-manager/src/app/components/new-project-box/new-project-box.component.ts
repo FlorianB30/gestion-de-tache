@@ -29,9 +29,9 @@ export class NewProjectBoxComponent {
     });
   }
 
-  createProject() {
+  async createProject() {
     if (this.projectForm.valid) {
-      if (this.api.createProject(this.projectForm.value.name)) {
+      if (await this.api.createProject(this.projectForm.value.name)) {
         this.closeProjectForm()
       }
     }

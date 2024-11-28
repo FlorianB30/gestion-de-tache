@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import Cookie from 'cookiejs';
 
@@ -9,7 +8,7 @@ export class ApiUserService {
   apiUrl = 'http://localhost:3000/users'
   isBrowser!: boolean;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,) { }
 
   async registerUser(mail: string, password: string) {
     await fetch(this.apiUrl + '/register', {
@@ -41,7 +40,6 @@ export class ApiUserService {
   userIsConnected(): boolean {
     if (this.isBrowser) {
       let user = Cookie.get('taskmanager')
-      console.log(user)
       if (user === '') return false
       const userObj = JSON.parse(user.toString())
       if (userObj.isConnected) {
