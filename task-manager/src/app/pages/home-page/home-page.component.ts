@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { NewTaskBoxComponent } from '../../components/new-task-box/new-task-box.component';
 import { NewProjectBoxComponent } from '../../components/new-project-box/new-project-box.component';
 import { ApiProjectService } from '../../service/api-project/api-project.service';
+import { ApiUserService } from '../../service/api-user/api-user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -25,16 +26,19 @@ export class HomePageComponent {
   styleNewTaskForm: string = 'displayNone'
   styleNewProjectForm: string = 'displayNone'
   projects!: any[]
+  users!: any[]
 
   @ViewChild(NewTaskBoxComponent) newTaskFormBox!: NewTaskBoxComponent;
 
-  constructor(private router: Router, private apiProject: ApiProjectService) {
+  constructor(private router: Router, private apiProject: ApiProjectService, private apiUser: ApiUserService) {
     this.setDatas()
   }
 
   async setDatas() {
     this.projects = await this.apiProject.getAllProjects()
+    this.users = await this.apiUser.getAllUsers()
     this.newTaskFormBox.projects = this.projects
+    this.newTaskFormBox.users = this.users
   }
 
   changeStyleTaskForm(event: any): void {

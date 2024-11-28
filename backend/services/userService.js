@@ -3,10 +3,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
+const getUsers = async () => {
+    return await User.findAll();
+}
+
 const register = async (mail, password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     return await User.create({ mail, password: hashedPassword });
-    // return await User.create({ mail, password });
 };
 
 const login = async (mail, password) => {
@@ -20,4 +23,4 @@ const login = async (mail, password) => {
     return { token, user };
 };
 
-module.exports = { register, login };
+module.exports = { getUsers, register, login };

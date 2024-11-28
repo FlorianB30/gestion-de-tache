@@ -37,8 +37,26 @@ export class ApiUserService {
     return false
   }
 
-  getAllUsers(): any[] {
-    return []
+  async getAllUsers(): Promise<any[]> {
+    return await fetch(this.apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+        return data
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête :", error);
+      });
   }
 
   userIsConnected(): boolean {

@@ -15,7 +15,8 @@ import { ApiTaskService } from '../../service/api-task/api-task.service';
 })
 export class NewTaskBoxComponent {
   taskForm: FormGroup
-  @Input() projects!: any[]
+  projects!: any[]
+  users!: any[]
   @Output() style = new EventEmitter<string>()
 
   constructor(private fb: FormBuilder, private api: ApiTaskService) {

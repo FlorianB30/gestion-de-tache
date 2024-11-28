@@ -14,8 +14,9 @@
         <div>
             <label for="user">Collaborateur</label>
             <select id="user" formControlName="user">
-                <option>Collaborateur 1</option>
-                <option>Collaborateur 2</option>
+                @for(user of users; track user.user_id) {
+                <option value="user.user_id">{{user.mail}}</option>
+                }
             </select>
         </div>
     </div>

@@ -41,7 +41,6 @@ export class ApiProjectService {
       .catch((error) => {
         console.error("Erreur lors de la requête :", error);
       });
-
   }
 
   getUserId(): number {
