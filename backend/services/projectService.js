@@ -1,10 +1,11 @@
 const { Project, User, ProjectState, Task, TaskState } = require('../models');
+const { Op } = require('sequelize');
 
 const createProject = async (projectData) => {
     return await Project.create(projectData);
 };
 
-const getProjects = async () => {
+const getProjects = async (userId) => {
     return await Project.findAll({
         include: [
             {
@@ -18,7 +19,7 @@ const getProjects = async () => {
             {
                 model: Task,
                 as: 'Tasks',
-                attributes: ['task_id', 'project_id', 'title', 'created_date', 'description', 'priority', 'deadline', 'time_expected', 'time_done'],
+                attributes: ['task_id', 'user_id', 'project_id', 'title', 'created_date', 'description', 'priority', 'deadline', 'time_expected', 'time_done'],
                 separate: true,
                 order: [['priority', 'ASC']],
                 include: [
@@ -29,6 +30,12 @@ const getProjects = async () => {
                 ],
             },
         ],
+        where: {
+            [Op.or]: [
+                { user_id: userId },
+                // { '$Tasks.user_id$': userId },
+            ],
+        },
     });
 };
 

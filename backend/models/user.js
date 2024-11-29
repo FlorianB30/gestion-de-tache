@@ -10,6 +10,7 @@ const User = sequelize.define('User', {
 
 User.associate = (models) => {
     User.hasMany(models.Project, { foreignKey: 'user_id' });
+    User.hasMany(models.Task, { foreignKey: 'user_id' });
 };
 
 module.exports = User;

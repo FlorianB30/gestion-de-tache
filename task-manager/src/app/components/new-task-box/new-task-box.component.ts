@@ -37,7 +37,7 @@ export class NewTaskBoxComponent {
     if (this.taskForm.valid) {
       await this.api.createTask(this.taskForm.value)
       this.closeTaskForm()
-      this.router.navigate(['/'])
+      window.location.reload();
     }
   }
 

@@ -10,7 +10,7 @@ export class ApiProjectService {
 
   constructor(private api: ApiUserService) { }
 
-  async createProject(name: string): Promise<boolean> {
+  async createProject(name: string) {
     await fetch(this.apiUrl, {
       method: 'POST',
       headers: {
@@ -18,11 +18,10 @@ export class ApiProjectService {
       },
       body: JSON.stringify({ name, project_states_id: 1, user_id: this.getUserId() }),
     });
-    return true
   }
 
   async getAllProjects(): Promise<any> {
-    return await fetch(this.apiUrl, {
+    return await fetch(this.apiUrl + '/myprojects/' + this.getUserId(), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

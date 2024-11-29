@@ -11,7 +11,7 @@ const createProject = async (req, res, next) => {
 
 const getProjects = async (req, res, next) => {
     try {
-        const projects = await projectService.getProjects();
+        const projects = await projectService.getProjects(req.params.userId);
         res.json(projects);
     } catch (err) {
         next(err);

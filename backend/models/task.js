@@ -25,6 +25,7 @@ const Task = sequelize.define('Task', {
 
 Task.associate = (models) => {
     Task.belongsTo(models.Project, { foreignKey: 'project_id' });
+    Task.belongsTo(models.User, { foreignKey: 'user_id' });
     Task.belongsTo(models.TaskState, { foreignKey: 'task_states_id' });
 };
 
