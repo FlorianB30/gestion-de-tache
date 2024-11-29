@@ -6,4 +6,8 @@ const TaskState = sequelize.define('TaskState', {
     name: { type: DataTypes.STRING(50), allowNull: false, unique: true },
 });
 
+TaskState.associate = (models) => {
+    TaskState.hasMany(models.Task, { foreignKey: 'task_states_id' });
+};
+
 module.exports = TaskState;

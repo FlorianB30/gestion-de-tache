@@ -7,7 +7,7 @@ const Task = sequelize.define('Task', {
     task_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     title: { type: DataTypes.STRING(50), allowNull: false },
     description: { type: DataTypes.STRING(100) },
-    priority: { type: DataTypes.INTEGER },
+    priority: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     deadline: { type: DataTypes.DATE },
     created_date: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
     task_states_id: {
@@ -25,6 +25,7 @@ const Task = sequelize.define('Task', {
 
 Task.associate = (models) => {
     Task.belongsTo(models.Project, { foreignKey: 'project_id' });
+    Task.belongsTo(models.TaskState, { foreignKey: 'task_states_id' });
 };
 
 module.exports = Task;

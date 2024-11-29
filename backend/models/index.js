@@ -46,5 +46,7 @@ Task.belongsTo(Project, { foreignKey: 'project_id' });
 Project.hasMany(Task, { foreignKey: 'project_id', as: 'Tasks' });
 Project.belongsTo(User, { foreignKey: 'user_id' });
 Project.belongsTo(ProjectState, { foreignKey: 'project_states_id' });
+Task.belongsTo(TaskState, { foreignKey: 'task_states_id' });
+TaskState.hasMany(Task, { foreignKey: 'task_states_id' });
 
 module.exports = { sequelize, User, Task, TaskState, Project, ProjectState };

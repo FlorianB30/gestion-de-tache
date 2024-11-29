@@ -23,7 +23,8 @@ export class ApiTaskService {
         tags: task.tags,
         time_expected: task.time,
         deadline: task.deadline,
-        task_states_id: 1
+        task_states_id: 1,
+        priority: task.priority
       }),
     });
   }

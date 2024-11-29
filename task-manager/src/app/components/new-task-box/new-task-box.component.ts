@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiTaskService } from '../../service/api-task/api-task.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-task-box',
@@ -19,7 +20,7 @@ export class NewTaskBoxComponent {
   users!: any[]
   @Output() style = new EventEmitter<string>()
 
-  constructor(private fb: FormBuilder, private api: ApiTaskService) {
+  constructor(private fb: FormBuilder, private api: ApiTaskService, private router: Router) {
     this.taskForm = this.fb.group({
       project: ['', [Validators.required]],
       title: ['', [Validators.required]],
@@ -28,6 +29,7 @@ export class NewTaskBoxComponent {
       tags: [''],
       deadline: ['', [Validators.required]],
       user: ['', [Validators.required]],
+      priority: [0, [Validators.required]]
     });
   }
 
@@ -35,6 +37,7 @@ export class NewTaskBoxComponent {
     if (this.taskForm.valid) {
       await this.api.createTask(this.taskForm.value)
       this.closeTaskForm()
+      this.router.navigate(['/'])
     }
   }
 

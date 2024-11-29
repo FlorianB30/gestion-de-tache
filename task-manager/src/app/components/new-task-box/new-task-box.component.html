@@ -26,9 +26,15 @@
         <input id="title" formControlName="title" />
     </div>
 
-    <div>
-        <label for="time">Temps prévu (en heure)</label>
-        <input id="time" formControlName="time" type="number" />
+    <div class="row">
+        <div>
+            <label for="time">Temps prévu (en heure)</label>
+            <input id="time" formControlName="time" type="number" />
+        </div>
+        <div>
+            <label for="priority">Priorité</label>
+            <input id="priority" formControlName="priority" type="number" min="0" value="0" />
+        </div>
     </div>
 
     <div>

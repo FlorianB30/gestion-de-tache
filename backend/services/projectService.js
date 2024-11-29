@@ -1,4 +1,4 @@
-const { Project, User, ProjectState, Task } = require('../models');
+const { Project, User, ProjectState, Task, TaskState } = require('../models');
 
 const createProject = async (projectData) => {
     return await Project.create(projectData);
@@ -19,6 +19,14 @@ const getProjects = async () => {
                 model: Task,
                 as: 'Tasks',
                 attributes: ['task_id', 'project_id', 'title', 'created_date', 'description', 'priority', 'deadline', 'time_expected', 'time_done'],
+                separate: true,
+                order: [['priority', 'ASC']],
+                include: [
+                    {
+                        model: TaskState,
+                        attributes: ['task_states_id', 'name'],
+                    },
+                ],
             },
         ],
     });
