@@ -4,11 +4,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, NavBarComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [CommonModule, RouterOutlet, NavBarComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'task-manager';

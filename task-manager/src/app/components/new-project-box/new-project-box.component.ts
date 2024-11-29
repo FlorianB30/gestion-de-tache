@@ -4,14 +4,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ApiProjectService } from '../../service/api-project/api-project.service';
 
 @Component({
-  selector: 'app-new-project-box',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  templateUrl: './new-project-box.component.html',
-  styleUrl: './new-project-box.component.scss'
+    selector: 'app-new-project-box',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule
+    ],
+    templateUrl: './new-project-box.component.html',
+    styleUrl: './new-project-box.component.scss'
 })
 export class NewProjectBoxComponent {
   projectForm: FormGroup

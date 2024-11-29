@@ -10,17 +10,16 @@ import { ApiProjectService } from '../../service/api-project/api-project.service
 import { ApiUserService } from '../../service/api-user/api-user.service';
 
 @Component({
-  selector: 'app-home-page',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TaskLineComponent,
-    TaskBoxComponent,
-    NewTaskBoxComponent,
-    NewProjectBoxComponent
-  ],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+    selector: 'app-home-page',
+    imports: [
+        CommonModule,
+        TaskLineComponent,
+        TaskBoxComponent,
+        NewTaskBoxComponent,
+        NewProjectBoxComponent
+    ],
+    templateUrl: './home-page.component.html',
+    styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
   styleNewTaskForm: string = 'displayNone'

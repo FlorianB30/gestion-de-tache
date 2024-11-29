@@ -4,14 +4,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ApiTaskService } from '../../service/api-task/api-task.service';
 
 @Component({
-  selector: 'app-new-task-box',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  templateUrl: './new-task-box.component.html',
-  styleUrl: './new-task-box.component.scss'
+    selector: 'app-new-task-box',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule
+    ],
+    templateUrl: './new-task-box.component.html',
+    styleUrl: './new-task-box.component.scss'
 })
 export class NewTaskBoxComponent {
   taskForm: FormGroup

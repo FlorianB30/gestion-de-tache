@@ -5,14 +5,13 @@ import { ApiUserService } from '../../service/api-user/api-user.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register-page',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.scss'
+    selector: 'app-register-page',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule
+    ],
+    templateUrl: './register-page.component.html',
+    styleUrl: './register-page.component.scss'
 })
 export class RegisterPageComponent {
   registerForm: FormGroup;
