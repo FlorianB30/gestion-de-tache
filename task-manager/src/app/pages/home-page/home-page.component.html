@@ -31,7 +31,10 @@
     <p>Priorité</p>
 </div>
 @for(project of projects; track project.project_id) {
-<h2>{{project.name}}</h2>
+<div class="flex-row-space">
+    <h2>{{project.name}}</h2>
+    <button (click)="deleteProject(project.project_id)">Supprimer le projet</button>
+</div>
 @for(task of project.Tasks; track task.task_id) {
 <app-task-line [task]="task"></app-task-line>
 }

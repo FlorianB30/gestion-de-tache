@@ -21,3 +21,10 @@ body {
     align-items: center;
     justify-content: space-around;
 }
+
+.flex-row-space {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

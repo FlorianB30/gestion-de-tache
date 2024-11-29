@@ -50,6 +50,11 @@ export class HomePageComponent {
     this.newTaskFormBox.users = this.users
   }
 
+  deleteProject(project_id: number) {
+    this.apiProject.deleteProject(project_id)
+    window.location.reload();
+  }
+
   filterProjects() {
     let projectsTab = []
     this.projects = this.projectsPrevious

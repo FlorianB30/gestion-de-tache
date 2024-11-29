@@ -42,6 +42,15 @@ export class ApiProjectService {
       });
   }
 
+  deleteProject(project_id: number) {
+    fetch(this.apiUrl + '/' + project_id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  }
+
   getUserId(): number {
     let user = Cookie.get('taskmanager')
     if (user === '') return 0
