@@ -19,7 +19,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@angular/ssr": "^18.2.7",
+    "@angular/ssr": "^19.0.2",
     "bcryptjs": "^2.4.3",
     "cookie.js": "^7.0.1",
     "cookiejs": "^2.1.3",

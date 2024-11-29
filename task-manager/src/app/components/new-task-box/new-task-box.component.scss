@@ -32,7 +32,9 @@ form {
                 width: 100%;
             }
 
-            flex: 1;
+            >*:nth-child(1) {
+                background-color: green;
+            }
         }
     }
 
