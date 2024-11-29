@@ -3,16 +3,22 @@
         <p (click)="openNewProjectForm()">+ Nouveau projet</p>
         <p (click)="openNewTaskForm()">+ Nouvelle tâche</p>
     </div>
-    <div>
-        <label for="tag">recherche par tag</label>
-        <input name="tag" />
-    </div>
-    <div>
-        <label for="user">Recherche par collaborateur</label>
-        <select>
-            <option>Collaborateur</option>
-        </select>
-    </div>
+    <form class="flex-row" [formGroup]="filtersForm" (ngSubmit)="filterProjects()">
+        <div>
+            <label for="tag">recherche par tag</label>
+            <input name="tag" />
+        </div>
+        <div>
+            <label for="user_id">Recherche par collaborateur</label>
+            <select formControlname="user_id">
+                @for(user of users; track user.user_id) {
+                <option [value]="user.user_id">{{user.mail}}</option>
+                }
+            </select>
+        </div>
+        <button type="submit">Filtrer</button>
+    </form>
+    <p (click)="resetFilters()">Reset</p>
 </div>
 
 <div class="head-taks">
