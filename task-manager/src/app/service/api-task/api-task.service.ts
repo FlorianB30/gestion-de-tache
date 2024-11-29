@@ -10,7 +10,7 @@ export class ApiTaskService {
   constructor() { }
 
   async createTask(task: any) {
-    const response = await fetch(this.apiUrl + '/', {
+    await fetch(this.apiUrl + '/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,6 +25,21 @@ export class ApiTaskService {
         deadline: task.deadline,
         task_states_id: 1,
         priority: task.priority
+      }),
+    });
+  }
+
+  async updateTask(task: any) {
+    await fetch(this.apiUrl + '/' + task.task_id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: task.title,
+        time_done: task.time_done,
+        time_expected: task.time_expected,
+        deadline: task.deadline,
       }),
     });
   }

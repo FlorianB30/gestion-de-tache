@@ -34,9 +34,9 @@ export class HomePageComponent {
 
   @ViewChild(NewTaskBoxComponent) newTaskFormBox!: NewTaskBoxComponent;
 
-  constructor(private router: Router, private apiProject: ApiProjectService, private apiUser: ApiUserService, private fb: FormBuilder) {
+  constructor(private apiProject: ApiProjectService, private apiUser: ApiUserService, private fb: FormBuilder) {
     this.filtersForm = this.fb.group({
-      user_id: [''],
+      userId: [''],
       tags: [''],
     });
     this.setDatas()
@@ -44,7 +44,7 @@ export class HomePageComponent {
 
   async setDatas() {
     this.projects = await this.apiProject.getAllProjects()
-    this.projectsPrevious = await this.apiProject.getAllProjects()
+    this.projectsPrevious = this.projects.slice()
     this.users = await this.apiUser.getAllUsers()
     this.newTaskFormBox.projects = this.projects
     this.newTaskFormBox.users = this.users
@@ -55,23 +55,24 @@ export class HomePageComponent {
     window.location.reload();
   }
 
-  filterProjects() {
-    let projectsTab = []
-    this.projects = this.projectsPrevious
-    console.log(this.filtersForm.value)
-    const userId = this.filtersForm.value.user_id
-    console.log(userId)
+  async filterProjects() {
+    if (this.filtersForm.valid) {
+      console.log(this.projects)
+      let projectsTab = []
+      await this.setDatas()
+      const userId = this.filtersForm.value.userId
 
-    for (let i = 0; i < this.projects.length; i++) {
-      projectsTab.push(this.projects[i])
-      projectsTab[i].Tasks = []
-      for (let j = 0; j < this.projects[i].Tasks.length; j++) {
-        if (this.projects[i].Tasks[j].user_id === userId) {
-          projectsTab[i].Tasks.push(this.projects[i].Tasks[j])
+      for (let i = 0; i < this.projects.length; i++) {
+        projectsTab.push(this.projects[i])
+        projectsTab[i].Tasks = []
+        for (let j = 0; j < this.projects[i].Tasks.length; j++) {
+          if (this.projects[i].Tasks[j].userId === userId) {
+            projectsTab[i].Tasks.push(this.projects[i].Tasks[j])
+          }
         }
       }
+      this.projects = projectsTab.slice()
     }
-    this.projects = projectsTab
   }
 
   resetFilters() {

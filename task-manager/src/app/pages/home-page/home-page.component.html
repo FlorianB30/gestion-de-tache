@@ -9,8 +9,8 @@
             <input name="tag" />
         </div>
         <div>
-            <label for="user_id">Recherche par collaborateur</label>
-            <select formControlname="user_id">
+            <label for="userId">Recherche par collaborateur</label>
+            <select id="userId" formControlName="userId">
                 @for(user of users; track user.user_id) {
                 <option [value]="user.user_id">{{user.mail}}</option>
                 }

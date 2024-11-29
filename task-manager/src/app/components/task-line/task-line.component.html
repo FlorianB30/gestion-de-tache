@@ -1,9 +1,11 @@
-<div>
-    <h3>{{task.title}}</h3>
+<form [formGroup]="taskUpdateForm" (ngSubmit)="updateTask()">
+    <input formControlName="title" />
     <p>{{task.created_date}}</p>
-    <p>{{task.deadline}}</p>
-    <p>{{task.time_done | decimalToHour}}</p>
-    <p>{{task.time_expected | decimalToHour}}</p>
+    <input formControlName="deadline" />
+    <input formControlName="time_done" />
+    <input formControlName="time_expected" />
     <p>{{task.TaskState.name}}</p>
     <p>{{task.priority}}</p>
-</div>
+    <p (click)="editTask()">Modifier</p>
+    <button type="submit">Valider</button>
+</form>
