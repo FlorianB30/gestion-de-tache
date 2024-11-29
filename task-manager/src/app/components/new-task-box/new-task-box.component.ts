@@ -33,10 +33,8 @@ export class NewTaskBoxComponent {
 
   async createTask() {
     if (this.taskForm.valid) {
-      if (await this.api.createTask(this.taskForm.value)) {
-        console.log(this.taskForm.value)
-        this.closeTaskForm()
-      }
+      await this.api.createTask(this.taskForm.value)
+      this.closeTaskForm()
     }
   }
 

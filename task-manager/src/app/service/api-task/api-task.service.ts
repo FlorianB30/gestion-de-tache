@@ -9,14 +9,14 @@ export class ApiTaskService {
 
   constructor() { }
 
-  async createTask(task: any): Promise<boolean> {
+  async createTask(task: any) {
     const response = await fetch(this.apiUrl + '/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        project_id: task.project_id,
+        project_id: task.project,
         title: task.title,
         user_id: task.user,
         description: task.description,
@@ -26,12 +26,5 @@ export class ApiTaskService {
         task_states_id: 1
       }),
     });
-    const responseJson = await response.json()
-    console.log(responseJson)
-    const newTask = responseJson.task
-    if (newTask !== undefined && newTask !== null) {
-      return true
-    }
-    return false
   }
 }
